@@ -24,7 +24,7 @@ stream = p.open(format=sample_format,
 
 def getAudioChunk():
     print("recording")
-    for i in range(0, int(fs / chunk * seconds)):
+    for i in range(0, int(fs / chunk * secondPerChunk)):
         data = stream.read(chunk)
     print("done recording")
     return data
