@@ -1,7 +1,7 @@
 import pyaudio
 import wave
 import time
-import thread
+#import thread
 import numpy as np
 
 chunk = 4096  # Record in chunks of 1024 samples
@@ -12,6 +12,8 @@ max_frequeny = fs/2
 secondPerChunk = 1
 filename = "Chunk.wav"
 dev_index = 0
+
+p = pyaudio.PyAudio()
 
 stream = p.open(format=sample_format,
                 channels=channels,
