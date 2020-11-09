@@ -36,7 +36,7 @@ def fftransform(data):
     k = np.arange(n)
     slice_duration = n/fs
     frq = k/slice_duration
-    formatstr = 'ih' % len(data)
+    formatstr = '%ih' % len(data)
     rawdata = b''.join(data)
     dataFloat = unpack(formatstr,rawdata)
     
