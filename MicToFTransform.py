@@ -54,7 +54,7 @@ def fftransform(data):
 def get_max_frq(frq, fft):
     max_frq = 0
     max_fft = 0
-    for idx in range(1:len(fft)):
+    for idx in range(1,len(fft)):
         if abs(fft[idx]) > max_fft:
             max_fft = abs(fft[idx])
             max_frq = frq[idx]
