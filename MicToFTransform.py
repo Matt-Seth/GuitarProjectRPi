@@ -55,7 +55,7 @@ a = getAudioChunk()
 f = fftransform(a)
 
 print(type(f[0][0]))
-print(type(f[0]))
-print(type(f[1]))
+print(len(f[0]))
+print(len(f[1]))
 print(type(f[1][0]))
 
