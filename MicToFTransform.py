@@ -32,7 +32,7 @@ def getAudioChunk():
     return frames
 def fftransform(data):
     n = int(fs*secondPerSlice)
-    k = np.arrange(n)
+    k = np.arange(n)
     slice_duration = n/fs
     frq = k/slice_duration
     dataFFT = np.fft.fft(data)/n #F transform and normalize by dividing by the expected number of elements in the slice.
