@@ -44,7 +44,6 @@ def fftransform(data):
     dataFFT = np.fft.fft(data)
     maxFRQ_index = int(max_frequency*slice_duration)
     frq = frq[range(maxFRQ_index)]
-    dataFFT = dataFFT[range(maxFRQ_index)]
     return (frq, dataFFT)
 
 
