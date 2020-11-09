@@ -28,7 +28,7 @@ def getAudioChunk():
     print("recording")
     for i in range(0, int(fs / chunk * secondPerSlice)):
         data = stream.read(chunk)
-        frames = frames +append(data)
+        frames = frames + data
     print("done recording")
     return frames
 def fftransform(data):
