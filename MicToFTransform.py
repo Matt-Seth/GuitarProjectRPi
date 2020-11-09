@@ -31,7 +31,7 @@ def getAudioChunk():
         npts = len(data)
         print(data)
         print(npts)
-        formatstr = '%ih'% npts
+        formatstr = '%iB'% npts
         convertToFloat = unpack(formatstr, data)
         frames.append(convertToFloat)
     print("done recording")
