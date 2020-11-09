@@ -31,7 +31,7 @@ def getAudioChunk():
     print("done recording")
     return frames
 def fftransform(data):
-    n = int(fs*secondPerFrame)
+    n = int(fs*secondPerSlice)
     k = np.arrange(n)
     slice_duration = n/fs
     frq = k/slice_duration
