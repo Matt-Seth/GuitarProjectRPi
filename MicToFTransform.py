@@ -9,7 +9,7 @@ sample_format = pyaudio.paInt16  # 16 bits per sample
 channels = 1
 fs = 44100  # Record at 44100 samples per second
 max_frequeny = fs/2
-secondPerSlice = 1 #each frame to be FFT will be this many seconds long
+secondPerSlice = 3 #each frame to be FFT will be this many seconds long
 filename = "Chunk.wav"
 dev_index = 0
 
@@ -32,16 +32,19 @@ def getAudioChunk():
     return frames
 def fftransform(data):
     n = int(fs*secondPerFrame)
+    k = np.arrange(n)
+    slice_duration = n/fs
+    frq = k/slice_duration
     dataFFT = np.fft.fft(data)/n #F transform and normalize by dividing by the expected number of elements in the slice.
-
+    maxFRQ_index = int(max_frequency*slice_duration)
+    frq = frq[range(maxFRQ_index)]
+    dataFFT = dataFFT[range(maxFRQ_index)]
+    return (frq, dataFFT)
 
 
 a = getAudioChunk()
+f = fftransform(a)
 
+print(f[1])
+print(f[2])
 
-wf = wave.open(filename, 'wb')
-wf.setnchannels(channels)
-wf.setsampwidth(p.get_sample_size(sample_format))
-wf.setframerate(fs)
-wf.writeframes(b''.join(frames))
-wf.close()
