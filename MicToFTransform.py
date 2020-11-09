@@ -3,7 +3,7 @@ import wave
 import time
 #import thread
 import numpy as np
-import struct
+from struct import unpack
 
 chunk = 4096  # Record in chunks of 1024 samples
 sample_format = pyaudio.paInt16  # 16 bits per sample
@@ -36,7 +36,9 @@ def fftransform(data):
     k = np.arange(n)
     slice_duration = n/fs
     frq = k/slice_duration
-    dataFloat = struct.unpack("%ih" % (len(data)* channels), (b''.join(data)))
+    formatstr = 'ih' % len(data)
+    rawdata = b''.join(data)
+    dataFloat = unpack(formatstr,rawdata)
     
     dataFFT = np.fft.fft(dataFloat)
     maxFRQ_index = int(max_frequency*slice_duration)
