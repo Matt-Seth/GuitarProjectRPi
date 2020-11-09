@@ -24,15 +24,15 @@ stream = p.open(format=sample_format,
                 input=True)
 
 def getAudioChunk():
-    frames = []
+    frames = np.array()
     print("recording")
     for i in range(0, int(fs / chunk * secondPerSlice)):
         data = stream.read(chunk)
         npts = len(data)
         formatstr = '%iB'% npts
         convertToFloat = unpack(formatstr, data)
-        frames.append(convertToFloat)
-    print("done recording")
+        np.concatenate((frames, convertToFloat), axis = None)
+        print("done recording")
     return frames
     
 def fftransform(data):
