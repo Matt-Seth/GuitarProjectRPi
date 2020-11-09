@@ -28,7 +28,10 @@ def getAudioChunk():
     print("recording")
     for i in range(0, int(fs / chunk * secondPerSlice)):
         data = stream.read(chunk)
-        frames.append(data)
+        npts = len(data)
+        formatstr = '%ih'% npts
+        convertToFloat = unpack(formatstr, data)
+        frames.append(convertToFloat)
     print("done recording")
     return frames
 def fftransform(data):
@@ -36,11 +39,8 @@ def fftransform(data):
     k = np.arange(n)
     slice_duration = n/fs
     frq = k/slice_duration
-    formatstr = '%iB' % len(data)
-    rawdata = b''.join(data)
-    dataFloat = unpack(formatstr,rawdata)
     
-    dataFFT = np.fft.fft(dataFloat)
+    dataFFT = np.fft.fft(data)
     maxFRQ_index = int(max_frequency*slice_duration)
     frq = frq[range(maxFRQ_index)]
     dataFFT = dataFFT[range(maxFRQ_index)]
