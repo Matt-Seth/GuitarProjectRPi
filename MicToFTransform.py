@@ -36,7 +36,7 @@ def fftransform(data):
     k = np.arange(n)
     slice_duration = n/fs
     frq = k/slice_duration
-    dataFloat = struct.unpack("%ih" % (data.len()* channels), data)
+    dataFloat = struct.unpack("%ih" % (len(data)* channels), data)
 
 
     dataFFT = np.fft.fft(dataFloat)/n #F transform and normalize by dividing by the expected number of elements in the slice.
