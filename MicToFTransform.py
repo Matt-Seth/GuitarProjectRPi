@@ -31,12 +31,12 @@ def getAudioChunk():
         npts = len(data)
         print(data)
         print(npts)
-        #formatstr = '%ih'% npts
-        #convertToFloat = unpack(formatstr, data)
-        #frames.append(convertToFloat)
+        formatstr = '%ih'% npts
+        convertToFloat = unpack(formatstr, data)
+        frames.append(convertToFloat)
     print("done recording")
-    #return frames
-    return data
+    return frames
+    
 def fftransform(data):
     n = int(fs*secondPerSlice)
     k = np.arange(n)
