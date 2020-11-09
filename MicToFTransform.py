@@ -51,12 +51,18 @@ def fftransform(data):
     dataFFT = dataFFT[range(maxFRQ_index)]
     return (frq, dataFFT)
 
+def get_max_frq(frq, fft):
+    max_frq = 0
+    max_fft = 0
+    for idx in range(len(fft)):
+        if abs(fft[idx]) > max_fft:
+            max_fft = abs(fft[idx])
+            max_frq = frq[idx]
+    return max_frq
 
 a = getAudioChunk()
 f = fftransform(a)
+max = get_max_frq(f[0], f[1])
 
-print(type(f[0][0]))
-print(len(f[0]))
-print(len(f[1]))
-print(type(f[1][0]))
+print(max)
 
