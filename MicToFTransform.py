@@ -36,9 +36,9 @@ def fftransform(data):
     k = np.arange(n)
     slice_duration = n/fs
     frq = k/slice_duration
-    dataFloat = struct.unpack("%ih" % (len(data)* channels), (b''.join(data))
+    dataFloat = struct.unpack("%ih" % (len(data)* channels), (b''.join(data)))
     
-    #dataFFT = np.fft.fft(dataFloat)
+    dataFFT = np.fft.fft(dataFloat)
     maxFRQ_index = int(max_frequency*slice_duration)
     frq = frq[range(maxFRQ_index)]
     dataFFT = dataFFT[range(maxFRQ_index)]
