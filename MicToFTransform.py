@@ -5,7 +5,7 @@ import time
 import numpy as np
 from struct import unpack
 
-chunk = 4096  # Record in chunks of 1024 samples
+chunk = 4096  # Record in chunks of 4096 samples
 sample_format = pyaudio.paInt16  # 16 bits per sample
 channels = 1
 fs = 44100  # Record at 44100 samples per second
@@ -50,6 +50,6 @@ def fftransform(data):
 a = getAudioChunk()
 f = fftransform(a)
 
-print(f[0])
-print(f[1])
+print(len(f[0]))
+print(len(f[1]))
 
