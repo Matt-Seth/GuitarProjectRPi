@@ -66,4 +66,5 @@ print(f[0])
 print("F0:")
 print()
 print(f[1])
-
+print()
+print(get_max_frq(f[0], f[1]))
