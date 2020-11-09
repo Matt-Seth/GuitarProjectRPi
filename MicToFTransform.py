@@ -24,11 +24,11 @@ stream = p.open(format=sample_format,
                 input=True)
 
 def getAudioChunk():
-    frames = ""
+    frames = []
     print("recording")
     for i in range(0, int(fs / chunk * secondPerSlice)):
         data = stream.read(chunk)
-        frames = frames + data
+        frames.append(data)
     print("done recording")
     return frames
 def fftransform(data):
@@ -36,7 +36,7 @@ def fftransform(data):
     k = np.arange(n)
     slice_duration = n/fs
     frq = k/slice_duration
-    dataFloat = struct.unpack("%ih" % (len(data)* channels), data)
+    dataFloat = struct.unpack("%ih" % (len(data)* channels), (b''.join(data))
 
 
     dataFFT = np.fft.fft(dataFloat)/n #F transform and normalize by dividing by the expected number of elements in the slice.
