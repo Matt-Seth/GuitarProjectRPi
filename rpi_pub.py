@@ -1,6 +1,4 @@
-"""EE 250L Lab 04 Starter Code
-
-Run rpi_pub_and_sub.py on your Raspberry Pi."""
+#EE 250 Project
 
 import paho.mqtt.client as mqtt
 import time
@@ -16,23 +14,14 @@ from grove_rgb_lcd import*
 
 led = 3
 
-#this will control our LED based off of the data from the mic
-def microphone_callback(client, userdata, msg):
-    #if a Low E note is played will turn on the LED
-    if((str(msg.payload, "utf-8")) == "Low E"):
-        digitalWrite(led,1)
-
-    #if an A is played it will turn off the light
-    elif ((str(msg.payload, "utf-8")) == "A"):
-        digitalWrite(led,0)
-def custom_callbackLED(client, userdata, msg):
-    print("Custom Callback for LED")
+def callbackLED(client, userdata, msg):
     #conditions for turning on and off the LED
-    if ((str(msg.payload, "utf-8")) == "LED_ON"):
-        digitalWrite(led,1)
+    # just an update on the LED status on the other rpi
+    print(str(msg.payload, "utf-8"))
 
-    elif ((str(msg.payload, "utf-8")) == "LED_OFF"):
-        digitalWrite(led,0)
+def callbackMic(client, userdata, msg):
+    # just an update on what note was played and the command sent
+    print(str(msg.payload, "utf-8"))
 
 def on_connect(client, userdata, flags, rc):
     print("Connected to server (i.e., broker) with result code "+str(rc))
@@ -43,7 +32,7 @@ def on_connect(client, userdata, flags, rc):
     client.subscribe("macubero/led")
     client.message_callback_add("macubero/led", callbackLED)
     client.subscribe("macubero/led")
-    client.message_callback_add("macubero/microphone", microphone_callback)
+    client.message_callback_add("macubero/microphone", callbackMic)
 
 #Default message callback. Please use custom callbacks.
 def on_message(client, userdata, msg):
@@ -71,15 +60,19 @@ if __name__ == '__main__':
     while True:
         #Sensor Readings
         # try:
-        #     #reading = ultrasonicRead(ultrasonic_ranger)
-        #     # we'll do our mic function here
+        #   we'll do our mic function here
+        #   note = get_note()
 
         # except TypeError:
         #     print ("Error")
         # except IOError:
         #     print ("Error")
+    if(note == "Low E"):
+        client.publish("macubero/callbackLED", "Note played: Low E, LED_ON")
 
-        client.publish("macubero/led","LED_OFF")
+    #if an A is played it will turn off the light
+    elif (note == "A"):
+        client.publish("macubero/callbackLED", "Note Played: A, LED_OFF")
 
         #1 second in between loops
         time.sleep(1)
