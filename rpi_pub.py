@@ -64,7 +64,7 @@ if __name__ == '__main__':
         #try:
           #we'll do our mic function here
         note = mic.getNote(stream)
-
+        print(note)
         #except TypeError:
         #   print ("Error TypeError")
         #except IOError:
