@@ -14,7 +14,7 @@ secondPerSlice = 1 #each frame to be FFT will be this many seconds long
 dev_index = 0
 Freq_Tolerance = 10 # plus or Minus 10 Hz
 
-E_Freq = 163 #on m
+E_Freq = 163 #on my guitar that isn't tuned, we set it to be 
 A_Freq = 100
 
 p = pyaudio.PyAudio()
@@ -62,7 +62,7 @@ def get_max_frq(frq, fft):
             max_fft = abs(fft[idx])
             max_frq = frq[idx]
     return max_frq
-def getNote()
+def getNote():
     a = getAudioChunk()
     f = fftransform(a)
     freq = get_max_frq(f[0], f[1])
