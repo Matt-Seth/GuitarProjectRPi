@@ -60,6 +60,7 @@ if __name__ == '__main__':
 
     while True:
         #Sensor Readings
+        note = ""
         try:
           #we'll do our mic function here
             note = mic.getNote()
