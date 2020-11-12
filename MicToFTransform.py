@@ -12,7 +12,7 @@ fs = 44100  # Record at 44100 samples per second
 max_frequency = fs/2
 secondPerSlice = 1 #each frame to be FFT will be this many seconds long
 dev_index = 0
-Freq_Tolerance = 10 # plus or Minus 10 Hz
+Freq_Tolerance = 20 # plus or Minus 10 Hz
 
 E_Freq = 163 #on my guitar that isn't tuned, we set it to be 
 A_Freq = 100
