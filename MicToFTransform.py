@@ -17,14 +17,16 @@ Freq_Tolerance = 10 # plus or Minus 10 Hz
 E_Freq = 163 #on my guitar that isn't tuned, we set it to be 
 A_Freq = 100
 
-p = pyaudio.PyAudio()
+def mic_init():
+    p = pyaudio.PyAudio()
 
-stream = p.open(format=sample_format,
+    stream = p.open(format=sample_format,
                 channels=channels,
                 input_device_index = dev_index,
                 rate=fs,
                 frames_per_buffer=chunk,
                 input=True)
+
 
 def getAudioChunk():
     frames = []
@@ -66,5 +68,3 @@ def getNote():
         return 'Low E'
     if abs(freq - A_Freq):
         return 'A'
-
-getNote()
