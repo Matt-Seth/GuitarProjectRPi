@@ -3,7 +3,7 @@
 import paho.mqtt.client as mqtt
 import time
 import sys
-import #
+import MicToFTransform as mic
 # By appending the folder of all the GrovePi libraries to the system path here,
 # we are successfully `import grovepi', by giving the path below
 sys.path.append('../../Software/Python/')
@@ -62,7 +62,7 @@ if __name__ == '__main__':
         Sensor Readings
         try:
           #we'll do our mic function here
-          note = get_note()
+          note = mic.get_note()
 
         except TypeError:
             print ("Error")
