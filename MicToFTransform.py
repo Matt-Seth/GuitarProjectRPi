@@ -64,7 +64,7 @@ def getNote():
     f = fftransform(a)
     freq = get_max_frq(f[0], f[1])
     print(freq)
-    if abs(freq - E_Freq):
+    if abs(freq - E_Freq) < Freq_Tolerance:
         return 'Low E'
-    if abs(freq - A_Freq):
+    if abs(freq - A_Freq) < Freq_Tolerance:
         return 'A'
