@@ -1,8 +1,9 @@
-#EE 250 Project
+#EE 250 Project 
 # Will turn on or off an LED based off the commands sent by the other rpi
 import paho.mqtt.client as mqtt
 import time
 
+led = 3
 def on_connect(client, userdata, flags, rc):
     print("Connected to server (i.e., broker) with result code "+str(rc))
 

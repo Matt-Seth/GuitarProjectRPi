@@ -3,6 +3,7 @@
 import paho.mqtt.client as mqtt
 import time
 import sys
+import #
 # By appending the folder of all the GrovePi libraries to the system path here,
 # we are successfully `import grovepi', by giving the path below
 sys.path.append('../../Software/Python/')
@@ -58,15 +59,15 @@ if __name__ == '__main__':
     client.loop_start()
 
     while True:
-        #Sensor Readings
-        # try:
-        #   we'll do our mic function here
-        #   note = get_note()
+        Sensor Readings
+        try:
+          #we'll do our mic function here
+          note = get_note()
 
-        # except TypeError:
-        #     print ("Error")
-        # except IOError:
-        #     print ("Error")
+        except TypeError:
+            print ("Error")
+        except IOError:
+            print ("Error")
     if(note == "Low E"):
         client.publish("macubero/callbackLED", "Note played: Low E, LED_ON")
 
