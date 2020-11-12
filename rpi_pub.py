@@ -58,6 +58,7 @@ if __name__ == '__main__':
     """
     client.loop_start()
     stream = mic.mic_init()
+
     while True:
         #Sensor Readings
         note = ""
