@@ -62,20 +62,20 @@ if __name__ == '__main__':
         #Sensor Readings
         try:
           #we'll do our mic function here
-          note = mic.getNote()
+            note = mic.getNote()
 
         except TypeError:
-            print ("Error")
+           print ("Error TypeError")
         except IOError:
-            print ("Error")
-    if(note == "Low E"):
-        client.publish("macubero/callbackLED", "Note played: Low E, LED_ON")
+           print ("Error ")
+        if(note == "Low E"):
+            client.publish("macubero/callbackLED", "Note played: Low E, LED_ON")
 
-    #if an A is played it will turn off the light
-    elif (note == "A"):
-        client.publish("macubero/callbackLED", "Note Played: A, LED_OFF")
+        #if an A is played it will turn off the light
+        elif (note == "A"):
+            client.publish("macubero/callbackLED", "Note Played: A, LED_OFF")
 
-        #1 second in between loops
+            #1 second in between loops
         time.sleep(1)
             
 
