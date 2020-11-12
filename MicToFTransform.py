@@ -28,7 +28,8 @@ def mic_init():
             input=True)
     stream.stop_stream()
     return stream
-
+def mic_deit(stream):
+    stream.close()
 
 def getAudioChunk(stream):
     frames = []
