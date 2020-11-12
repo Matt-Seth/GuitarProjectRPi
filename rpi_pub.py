@@ -57,6 +57,7 @@ if __name__ == '__main__':
     Call loop_stop() to stop the background thread. The force argument is currently ignored.
     """
     client.loop_start()
+    mic.mic_init()
     while True:
         #Sensor Readings
         note = ""
