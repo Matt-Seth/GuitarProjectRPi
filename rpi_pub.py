@@ -57,13 +57,14 @@ if __name__ == '__main__':
     Call loop_stop() to stop the background thread. The force argument is currently ignored.
     """
     client.loop_start()
-    mic.mic_init()
+    stream = mic.mic_init()
+
     while True:
         #Sensor Readings
         note = ""
         #try:
           #we'll do our mic function here
-        note = mic.getNote()
+        note = mic.getNote(stream)
 
         #except TypeError:
         #   print ("Error TypeError")

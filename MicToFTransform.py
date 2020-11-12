@@ -17,27 +17,29 @@ Freq_Tolerance = 10 # plus or Minus 10 Hz
 E_Freq = 163 #on my guitar that isn't tuned, we set it to be 
 A_Freq = 100
 
+def mic_init():
+    p = pyaudio.PyAudio()
 
-p = pyaudio.PyAudio()
-
-stream = p.open(format=sample_format,
+    stream = p.open(format=sample_format,
             channels=channels,
             input_device_index = dev_index,
             rate=fs,
             frames_per_buffer=chunk,
             input=True)
+    stream.stop_stream()
+    return stream
 
 
-def getAudioChunk():
+def getAudioChunk(stream):
     frames = []
-    
+    stream.start_stream()
     for i in range(0, int(fs / chunk * secondPerSlice)):
         data = stream.read(chunk)
         npts = len(data)
         formatstr = '%iB'% npts
         convertToFloat = unpack(formatstr, data)
         frames.extend(convertToFloat)
-   
+    stream.stop_stream()
     return frames
     
 def fftransform(data):
@@ -59,8 +61,8 @@ def get_max_frq(frq, fft):
             max_fft = abs(fft[idx])
             max_frq = frq[idx]
     return max_frq
-def getNote():
-    a = getAudioChunk()
+def getNote(stream):
+    a = getAudioChunk(stream)
     f = fftransform(a)
     freq = get_max_frq(f[0], f[1])
     print(freq)
