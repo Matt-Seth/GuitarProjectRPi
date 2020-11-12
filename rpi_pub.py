@@ -81,6 +81,6 @@ if __name__ == '__main__':
                 #1 second in between loops
             time.sleep(1)
         except KeyboardInterrupt:
-            mic.mic_deit()
+            mic.mic_deit(stream)
             sys.exit()
 
