@@ -59,10 +59,10 @@ if __name__ == '__main__':
     client.loop_start()
 
     while True:
-        Sensor Readings
+        #Sensor Readings
         try:
           #we'll do our mic function here
-          note = mic.get_note()
+          note = mic.getNote()
 
         except TypeError:
             print ("Error")
