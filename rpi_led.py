@@ -34,7 +34,7 @@ if __name__ == '__main__':
     client = mqtt.Client()
     client.on_message = callbackMic
     client.on_connect = on_connect
-    client.connect(host="eclipse.usc.edu", port=1883, keepalive=60)
+    client.connect(host="ec2-18-222-123-173.us-east-2.compute.amazonaws.com", port=60000, keepalive=60)
     client.loop_start()
 
     while True:
