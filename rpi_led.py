@@ -14,9 +14,7 @@ def on_connect(client, userdata, flags, rc):
 #this will control our LED based off of the data from the mic
 def microphone_callback(client, userdata, msg):
     #if a Low E note is played will turn on the LED
-
-
-	print("Incoming Message: " + str(msg.payload, "utf-8")
+    print("Incoming Message: " + (str(msg.payload, "utf-8")))
     if((str(msg.payload, "utf-8")) == "Low E"):
         digitalWrite(led,1)
 
