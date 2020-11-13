@@ -2,6 +2,7 @@
 # Will turn on or off an LED based off the commands sent by the other rpi
 import paho.mqtt.client as mqtt
 import time
+import grovepi
 
 led = 3
 def on_connect(client, userdata, flags, rc):
@@ -17,11 +18,11 @@ def callbackMic(client, userdata, msg):
     #if a Low E note is played will turn on the LED
     print("Incoming Message: " + (str(msg.payload, "utf-8")))
     if((str(msg.payload, "utf-8")) == "E"):
-        digitalWrite(led,1)
+        grovepi.digitalWrite(led,1)
 
     #if an A is played it will turn off the light
     elif ((str(msg.payload, "utf-8")) == "A"):
-        digitalWrite(led,0)
+        grovepi.digitalWrite(led,0)
 
 
 #Default message callback. Please use custom callbacks.
