@@ -8,20 +8,21 @@ def on_connect(client, userdata, flags, rc):
     print("Connected to server (i.e., broker) with result code "+str(rc))
 
     #subscribing to hostname/topic
-    client.subscribe("macubero/microphone")
     client.subscribe("macubero/led")
-
+    client.subscribe("macubero/callbackMic")
+    
+"""
 #this will control our LED based off of the data from the mic
-def microphone_callback(client, userdata, msg):
+def callbackMic(client, userdata, msg):
     #if a Low E note is played will turn on the LED
     print("Incoming Message: " + (str(msg.payload, "utf-8")))
-    if((str(msg.payload, "utf-8")) == "Low E"):
+    if((str(msg.payload, "utf-8")) == "E"):
         digitalWrite(led,1)
 
     #if an A is played it will turn off the light
     elif ((str(msg.payload, "utf-8")) == "A"):
         digitalWrite(led,0)
-
+"""
 
 #Default message callback. Please use custom callbacks.
 def on_message(client, userdata, msg):
