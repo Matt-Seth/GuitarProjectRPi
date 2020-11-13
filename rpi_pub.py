@@ -72,11 +72,11 @@ if __name__ == '__main__':
             #except IOError:
             #   print ("Error ")
             if(note == "Low E"):
-                client.publish("macubero/callbackLED", "Note played: Low E, LED_ON")
+                client.publish("macubero/callbackMic", "Note played: Low E, LED_ON")
 
             #if an A is played it will turn off the light
             elif (note == "A"):
-                client.publish("macubero/callbackLED", "Note Played: A, LED_OFF")
+                client.publish("macubero/callbackMic", "Note Played: A, LED_OFF")
 
                 #1 second in between loops
             time.sleep(1)
