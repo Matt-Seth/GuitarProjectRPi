@@ -11,7 +11,7 @@ def on_connect(client, userdata, flags, rc):
     client.subscribe("macubero/led")
     client.subscribe("macubero/callbackMic")
     
-"""
+
 #this will control our LED based off of the data from the mic
 def callbackMic(client, userdata, msg):
     #if a Low E note is played will turn on the LED
@@ -22,7 +22,7 @@ def callbackMic(client, userdata, msg):
     #if an A is played it will turn off the light
     elif ((str(msg.payload, "utf-8")) == "A"):
         digitalWrite(led,0)
-"""
+
 
 #Default message callback. Please use custom callbacks.
 def on_message(client, userdata, msg):
