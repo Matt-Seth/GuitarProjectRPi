@@ -48,7 +48,7 @@ if __name__ == '__main__':
     # connect it generates an on_connect() callback.
     client.on_connect = on_connect
     
-    client.connect(host="ec2-18-222-123-173.us-east-2.compute.amazonaws.com", port=60000, keepalive=60)
+    client.connect(host="ec2-3-138-142-104.us-east-2.compute.amazonaws.com", port=60000, keepalive=60)
     
     """ These functions implement a threaded interface to the network loop. 
     Calling loop_start() once, before or after connect*(), runs a thread in the 
