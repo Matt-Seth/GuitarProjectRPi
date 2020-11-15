@@ -63,14 +63,9 @@ if __name__ == '__main__':
         #Sensor Readings
         try:
             note = ""
-            #try:
-            #we'll do our mic function here
-            note = mic.getNote(stream)
+            note = mic.getNote(stream) # This function is called from MicToFTransform.py and returns the note, or none if there was no audio command in that time period.
             print(note)
-            #except TypeError:
-            #   print ("Error TypeError")
-            #except IOError:
-            #   print ("Error ")
+            
             if(note == "Low E"):
                 client.publish("macubero/callbackMic", "E")
 
@@ -80,6 +75,7 @@ if __name__ == '__main__':
 
                 #1 second in between loops
             time.sleep(1)
+            #this exception calls the end sequence that closes everything up correctly
         except KeyboardInterrupt:
             mic.mic_deit(stream)
             sys.exit()

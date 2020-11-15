@@ -11,7 +11,7 @@ channels = 1
 fs = 44100  # Record at 44100 samples per second
 max_frequency = fs/2
 secondPerSlice = 1 #each frame to be FFT will be this many seconds long
-dev_index = 0
+dev_index = 0 #the device index needs to be determined using the 
 Freq_Tolerance = 20 # plus or Minus 10 Hz
 
 E_Freq = 163 #on my guitar that isn't tuned, we set it to be 
@@ -33,13 +33,16 @@ def mic_deit(stream):
 
 def getAudioChunk(stream):
     frames = []
-    stream.start_stream()
-    for i in range(0, int(fs / chunk * secondPerSlice)):
+    stream.start_stream() #the start and stop stream allows the mic to stop recording so the stream doesn't overflow with bytes.
+    for i in range(0, int(fs / chunk * secondPerSlice)): 
+    #this for-loop gets about a second worth of data from the Mic, and converts the data to floats in a way that the FFT algorithm can manipulate
+    #The reason it is a for loop and not a time dependant loop: is because of how the stream is structured, if the same quantity of data isn't
+    #pulled every time, the stream throws an overflow error. 
         data = stream.read(chunk)
         npts = len(data)
         formatstr = '%iB'% npts
-        convertToFloat = unpack(formatstr, data)
-        frames.extend(convertToFloat)
+        convertToFloat = unpack(formatstr, data) #unpacks the bytestream to floats.
+        frames.extend(convertToFloat) #the frames array stores each chunk as an 
     stream.stop_stream()
     return frames
     

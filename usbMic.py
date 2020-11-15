@@ -1,3 +1,6 @@
+#this file is used just to test the microphone by recording and saving it to a file. 
+
+
 import pyaudio
 import wave
 
