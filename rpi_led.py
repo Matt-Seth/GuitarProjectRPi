@@ -9,8 +9,9 @@ def on_connect(client, userdata, flags, rc):
     print("Connected to server (i.e., broker) with result code "+str(rc))
 
     #subscribing to hostname/topic
-    client.subscribe("macubero/led")
     client.subscribe("macubero/callbackMic")
+    #initialize to 0
+    grovepi.digitalWrite(led,0)
     
 
 #this will control our LED based off of the data from the mic
