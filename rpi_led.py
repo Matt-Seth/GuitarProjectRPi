@@ -9,7 +9,6 @@ def on_connect(client, userdata, flags, rc):
     print("Connected to server (i.e., broker) with result code "+str(rc))
 
     #subscribing to hostname/topic
-    client.subscribe("macubero/led")
     client.subscribe("macubero/callbackMic")
     #initialize to 0
     grovepi.digitalWrite(led,0)
@@ -25,7 +24,7 @@ def callbackMic(client, userdata, msg):
     #if an A is played it will turn off the light
     elif ((str(msg.payload, "utf-8")) == "A"):
         grovepi.digitalWrite(led,0)
-    
+
 
 #Default message callback. Please use custom callbacks.
 def on_message(client, userdata, msg):
