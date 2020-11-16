@@ -9,7 +9,9 @@ Must have a server up and running with Mosquitto. Have all the appropriate conne
 
 The file MicToFTransform is called from rpi_pub and does most of the work to record and FFT, in this file, the Value dev_index is the index of the usb mic from the PyAudio function get_device_info_by_index()
 
+Grovepi.py is used for the LED
 
+usbMic.py and rpi_pub files are for testing. 
 
 Libraries Used:
 numpy
